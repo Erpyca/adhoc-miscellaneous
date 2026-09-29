@@ -3,12 +3,22 @@
 # directory
 ##############################################################################
 import json
+from datetime import timedelta
 
-from odoo import models
+from odoo import api, fields, models
 
 
 class MailScheduledMessage(models.Model):
     _inherit = "mail.scheduled.message"
+
+    @api.model
+    def create_with_send_delay(self, vals):
+        """Crea el mensaje programado con el retraso del usuario."""
+        values = vals.copy()
+        values["scheduled_date"] = fields.Datetime.now() + timedelta(
+            seconds=self.env.user.send_message_delay
+        )
+        return self.create(values)
 
     def _post_message(self, raise_exception=True):
         """Resolve role_ids from notification_parameters into partner_ids before posting."""

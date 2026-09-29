@@ -173,6 +173,30 @@ msgid "Servidor de correo saliente"
 msgstr ""
 
 #. module: mail_ux
+#. odoo-python
+#: code:addons/mail_ux/models/mail_compose_message.py:0
+msgid "The scheduled send date (%(date)s) of %(record)s is in the past. Choose a future date, or remove it to send with your %(delay)s seconds delay."
+msgstr "La fecha de envío programada (%(date)s) de %(record)s ya pasó. Elegí una fecha futura, o quitala para enviar con tu retraso de %(delay)s segundos."
+
+#. module: mail_ux
+#. odoo-python
+#: code:addons/mail_ux/models/mail_compose_message.py:0
+msgid "The scheduled send date «%(value)s» of %(record)s is not a valid date. Choose a valid date or remove it."
+msgstr "La fecha de envío programada «%(value)s» de %(record)s no es una fecha válida. Elegí una fecha válida o quitala."
+
+#. module: mail_ux
+#. odoo-python
+#: code:addons/mail_ux/models/mail_compose_message.py:0
+msgid "The scheduled sending date (%(date)s) of %(record)s has already passed. Correct the scheduled date of the email template %(template)s (Settings > Technical > Email Templates) or remove it."
+msgstr "La fecha de envío programada (%(date)s) de %(record)s ya pasó. Corregí la fecha programada de la plantilla %(template)s (Ajustes > Técnico > Plantillas de email) o quitala."
+
+#. module: mail_ux
+#. odoo-python
+#: code:addons/mail_ux/models/res_users.py:0
+msgid "The send message delay cannot be negative. Use 0 to send without delay."
+msgstr "El retraso de envío no puede ser negativo. Usá 0 para enviar sin retraso."
+
+#. module: mail_ux
 #: model:ir.model,name:mail_ux.model_res_users
 msgid "User"
 msgstr "Usuario"
