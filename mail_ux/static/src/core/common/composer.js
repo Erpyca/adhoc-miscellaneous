@@ -38,11 +38,8 @@ patch(Composer.prototype, {
             const { attachments, parentId, mentionedChannels, mentionedPartners } = postData;
             const body = value;
             const params = await this.store.getMessagePostParams({ body, postData, thread: thread });
-            const scheduledDate = new Date();
-            scheduledDate.setSeconds(scheduledDate.getSeconds() + session.send_message_delay);
 
-            const formattedScheduledDate = scheduledDate.toISOString().slice(0, 19).replace("T", " ");
-            await this.orm.call("mail.scheduled.message", 'create', [
+            await this.orm.call("mail.scheduled.message", 'create_with_send_delay', [
                 {
                 'attachment_ids': attachments.map(attachment => attachment.id),
                 'author_id': user.partnerId,
@@ -51,7 +48,6 @@ patch(Composer.prototype, {
                 'res_id': postThread.id,
                 'is_note': postData.isNote,
                 'partner_ids': params.post_data.partner_ids || [],
-                'scheduled_date': formattedScheduledDate,
                 'notification_parameters': JSON.stringify(params.post_data),
                 'subject':  postThread.name,
             }])
